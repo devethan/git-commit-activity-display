@@ -65,20 +65,15 @@ function App() {
 
 const LoadingIndicator = () => {
   const [view, setView] = useState(true);
+
   useEffect(() => {
-    setTimeout(() => setView(!view), 300);
+    const timeout = setTimeout(() => setView(!view), 300);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [view]);
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        color: "#272C34",
-        fontStyle: "italic"
-      }}
-    >
+    <div style={styles.loadingWrapper}>
       <img
         src={require("./loading.png")}
         alt="loading"
@@ -136,6 +131,14 @@ const styles = {
     flexDirection: "row",
     width: "inherit",
     height: "inherit"
+  },
+  loadingWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    color: "#272C34",
+    fontStyle: "italic"
   },
   loadingImg: {
     width: 50,
