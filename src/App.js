@@ -24,7 +24,6 @@ function App() {
     });
 
     const resultSet = [0, 0, 0, 0, 0, 0, 0];
-
     await Promise.all(
       repoList.map(async repo => {
         await customFetch(
@@ -87,6 +86,11 @@ const LoadingIndicator = () => {
 };
 
 const GitActivityDisplay = ({ data }) => {
+  // What is today's day of week?
+  const dayOfWeek = new Date().toDateString().split(" ")[0];
+  const daySet = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dayIndex = daySet.findIndex(item => item === dayOfWeek);
+
   return (
     <div className="Content__wrapper">
       <div style={styles.container}>
@@ -112,8 +116,13 @@ const GitActivityDisplay = ({ data }) => {
               boxColor = "#196127";
               break;
           }
+          const commonDayStyle = { ...styles.day, backgroundColor: boxColor };
+          const dayOfStyle =
+            idx === dayIndex
+              ? { ...commonDayStyle, border: "3px solid black" }
+              : commonDayStyle;
           return (
-            <div key={idx} style={{ ...styles.day, backgroundColor: boxColor }}>
+            <div key={idx} style={dayOfStyle}>
               {item}
             </div>
           );
