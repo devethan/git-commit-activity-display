@@ -119,7 +119,7 @@ const GitActivityDisplay = ({ data }) => {
           const commonDayStyle = { ...styles.day, backgroundColor: boxColor };
           const dayOfStyle =
             idx === dayIndex
-              ? { ...commonDayStyle, border: "3px solid black" }
+              ? { ...commonDayStyle, border: "3px solid rgb(0, 0, 0, 0.5)" }
               : commonDayStyle;
           return (
             <div key={idx} style={dayOfStyle}>
