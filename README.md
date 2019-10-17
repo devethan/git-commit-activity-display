@@ -5,7 +5,9 @@
 ---
 
 `git clone https://github.com/devohno/git-commit-activity-display.git`
+
 `cd git-commit-activity-display`
+
 `vi .env`
 
 then, put your github access token in `.env` file.
